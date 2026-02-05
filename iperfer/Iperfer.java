@@ -44,32 +44,14 @@ public static void main(String[] args) {
         System.exit(1);
     }
 
-    if (args[0].equals("-c")) {
-        if (args.length != 5) {
-            System.err.println("Incorrect number of arguments for client mode");
-            System.exit(1);
-        }
-        String serverHost = args[1];
-        int serverPort = Integer.parseInt(args[2]);
-        int duration = Integer.parseInt(args[4]);
-        runClient(serverHost, serverPort, duration);
-    } else if (args[0].equals("-s")) {
-        if (args.length != 3) {
-            System.err.println("Incorrect number of arguments for server mode");
-            System.exit(1);
-        }
-        int port = Integer.parseInt(args[1]);
-        runServer(port);
-    } else {
-        System.err.println("Invalid mode. Use -c for client or -s for server.");
-        System.exit(1);
-    }
-
     String mode = args[0];
         // Check arguments
         if (mode.equals("-c")) {
-            //Kushal implementation
-
+            String serverHost = args[2];
+            int serverPort = Integer.parseInt(args[4]);
+            int time = Integer.parseInt(args[6]);
+            ClientSocket client = new ClientSocket(serverHost, serverPort, time);
+            client.connect(time);
         }
         else if (mode.equals("-s")) {
             if (args[2].equals("-p")) {
